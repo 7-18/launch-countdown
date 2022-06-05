@@ -14,16 +14,18 @@ export const useCountdown = (finishDate) => {
     return () => clearInterval(interval);
   }, [countdownDate]);
 
+  if (countdown < 0) {
+    return [0, 0, 0, 0];
+  }
+
   return getCountdown(countdown);
 };
 
 const getCountdown = (countdown) => {
   const days = Math.floor(countdown / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(
-    (countdown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  );
-  const minutes = Math.floor((countdown % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((countdown % (1000 * 60)) / 1000);
+  const hours = Math.floor((countdown / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((countdown / 1000 / 60) % 60);
+  const seconds = Math.floor((countdown / 1000) % 60);
 
   return [days, hours, minutes, seconds];
 };
