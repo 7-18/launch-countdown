@@ -5,7 +5,7 @@ import pattern from "../images/pattern-hills.svg";
 import { ShowCount } from "./ShowCount";
 
 export const Countdown = () => {
-  const finishDate = new Date(2022, 6, 5);
+  const finishDate = new Date(2022, 12, 31);
   return (
     <CountdownDivStyled>
       <StarsStyled src={stars} />
